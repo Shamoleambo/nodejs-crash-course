@@ -11,12 +11,13 @@ const server = http.createServer((req, res) => {
     });
   }
 
-  if (req.url === "/about") {
-    fs.readFile(path.join(__dirname, "public", "about.html"), (err, data) => {
-      if (err) throw err;
-      res.writeHead(200, { "Content-Type": "text/html" });
-      res.end(data);
-    });
+  if (req.url === "/api/users") {
+    const users = [
+      {name: 'Bob Truta', age: 23},
+      {name: 'Uncle Tiu', age: 25}
+    ];
+    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.end(JSON.stringify(users));
   }
 });
 
